@@ -24,6 +24,4 @@ data class GameEntity(
 
     @ColumnInfo("favorite")
     var favorite: Boolean? = false,
-
-
 )
