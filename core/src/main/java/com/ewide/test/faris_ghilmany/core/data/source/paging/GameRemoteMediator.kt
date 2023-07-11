@@ -16,7 +16,7 @@ class GameRemoteMediator(
     private val apiServices: GameApiService,
     private val database: GameDatabase
 ): RemoteMediator<Int, GameEntity>() {
-    private var desc: String? = "desc"
+    private var desc: String = "0"
     fun setSortDesc(desc: String){
         this.desc = desc
     }

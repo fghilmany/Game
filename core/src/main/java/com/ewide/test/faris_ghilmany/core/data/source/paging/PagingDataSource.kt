@@ -13,15 +13,15 @@ class PagingDataSource(
     private val database: GameDatabase,
     private val apiServices: GameApiService,
 ) {
-
-    fun getStories(): Flow<PagingData<GameEntity>> {
+    fun getStories(desc: String = "0"): Flow<PagingData<GameEntity>> {
+        val gameRemoteMediator = GameRemoteMediator(apiServices, database)
+        gameRemoteMediator.setSortDesc(desc)
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
                 pageSize = 5
             ),
-            remoteMediator =
-            GameRemoteMediator(apiServices, database)
+            remoteMediator = gameRemoteMediator
             ,
             pagingSourceFactory = {
                 database.gameDao().getPagingGame()

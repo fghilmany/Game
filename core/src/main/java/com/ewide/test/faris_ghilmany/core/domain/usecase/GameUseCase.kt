@@ -5,5 +5,5 @@ import com.ewide.test.faris_ghilmany.core.data.source.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 
 interface GameUseCase{
-    fun getPagingGame(): Flow<PagingData<GameEntity>>
+    fun getPagingGame(desc: String = "0"): Flow<PagingData<GameEntity>>
 }

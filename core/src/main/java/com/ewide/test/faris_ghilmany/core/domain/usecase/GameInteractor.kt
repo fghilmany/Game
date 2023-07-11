@@ -6,7 +6,7 @@ import com.ewide.test.faris_ghilmany.core.data.source.local.entity.GameEntity
 import kotlinx.coroutines.flow.Flow
 
 class GameInteractor(private val gameRepository: GameRepository): GameUseCase {
-    override fun getPagingGame(): Flow<PagingData<GameEntity>> {
-        return gameRepository.getGame()
+    override fun getPagingGame(desc: String): Flow<PagingData<GameEntity>> {
+        return gameRepository.getGame(desc)
     }
 }

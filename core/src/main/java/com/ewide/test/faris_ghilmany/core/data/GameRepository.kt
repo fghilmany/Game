@@ -15,7 +15,7 @@ class GameRepository(
     private val pagingDataSource: PagingDataSource,
     private val appExecutors: AppExecutors
 ): IGameRepository {
-    override fun getGame(): Flow<PagingData<GameEntity>> {
+    override fun getGame(desc: String): Flow<PagingData<GameEntity>> {
         return pagingDataSource.getStories()
     }
 }
