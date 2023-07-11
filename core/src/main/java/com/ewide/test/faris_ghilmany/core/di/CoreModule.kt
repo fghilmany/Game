@@ -5,6 +5,7 @@ import com.ewide.test.faris_ghilmany.core.BuildConfig
 import com.ewide.test.faris_ghilmany.core.data.GameRepository
 import com.ewide.test.faris_ghilmany.core.data.source.local.LocalDataSource
 import com.ewide.test.faris_ghilmany.core.data.source.local.room.GameDatabase
+import com.ewide.test.faris_ghilmany.core.data.source.paging.PagingDataSource
 import com.ewide.test.faris_ghilmany.core.data.source.remote.RemoteDataSource
 import com.ewide.test.faris_ghilmany.core.data.source.remote.network.GameApiService
 import com.ewide.test.faris_ghilmany.core.domain.repository.IGameRepository
@@ -58,9 +59,10 @@ val networkModule = module {
 val repositoryModule = module {
     single { RemoteDataSource(get()) }
     single { LocalDataSource(get()) }
+    single { PagingDataSource(get(), get()) }
     factory { AppExecutors() }
     single<IGameRepository> {
-        GameRepository(get(), get(), get())
+        GameRepository(get(), get(), get(), get())
     }
     single { PreferenceProvider(get()) }
 }
