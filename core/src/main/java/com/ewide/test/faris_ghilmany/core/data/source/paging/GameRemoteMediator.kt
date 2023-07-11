@@ -9,6 +9,7 @@ import com.ewide.test.faris_ghilmany.core.data.source.local.entity.GameEntity
 import com.ewide.test.faris_ghilmany.core.data.source.local.entity.RemoteKeys
 import com.ewide.test.faris_ghilmany.core.data.source.local.room.GameDatabase
 import com.ewide.test.faris_ghilmany.core.data.source.remote.network.GameApiService
+import com.ewide.test.faris_ghilmany.core.utils.DataMapper
 
 @OptIn(ExperimentalPagingApi::class)
 class GameRemoteMediator(
@@ -55,15 +56,10 @@ class GameRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val keys = responseData?.map {
-                    RemoteKeys(id = it?.gameID.toString(), prevKey = prevKey, nextKey = nextKey)
+                    RemoteKeys(id = it.gameID.toString(), prevKey = prevKey, nextKey = nextKey)
                 }
                 keys?.let { database.gameDao().insertAll(keys) }
-                val storyMap = responseData?.map {
-                    with(it){
-                        GameEntity((this?.gameID ?: "0").toInt(),
-                            this?.title, this?.normalPrice, this?.thumb, this?.dealRating,)
-                    }
-                }
+                val storyMap = DataMapper.mappingListGameResponseToGameEntity(responseData)
                 database.gameDao().insertGame(storyMap)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
