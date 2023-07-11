@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Disney Characters"
+rootProject.name = "Game"
 include ':app'
 include ':core'

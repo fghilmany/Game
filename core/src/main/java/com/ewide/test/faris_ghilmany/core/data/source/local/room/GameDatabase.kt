@@ -4,6 +4,6 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 
 @Database(version = 0, exportSchema = false)
-abstract class DisneyDatabase: RoomDatabase() {
-    abstract fun disneyDao(): DisneyDao
+abstract class GameDatabase: RoomDatabase() {
+    abstract fun gameDao(): GameDao
 }

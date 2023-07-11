@@ -2,12 +2,12 @@ package com.ewide.test.faris_ghilmany.core.di
 
 import androidx.room.Room
 import com.ewide.test.faris_ghilmany.core.BuildConfig
-import com.ewide.test.faris_ghilmany.core.data.DisneyRepository
+import com.ewide.test.faris_ghilmany.core.data.GameRepository
 import com.ewide.test.faris_ghilmany.core.data.source.local.LocalDataSource
-import com.ewide.test.faris_ghilmany.core.data.source.local.room.DisneyDatabase
+import com.ewide.test.faris_ghilmany.core.data.source.local.room.GameDatabase
 import com.ewide.test.faris_ghilmany.core.data.source.remote.RemoteDataSource
-import com.ewide.test.faris_ghilmany.core.data.source.remote.network.DisneyApiService
-import com.ewide.test.faris_ghilmany.core.domain.repository.IDisneyRepository
+import com.ewide.test.faris_ghilmany.core.data.source.remote.network.GameApiService
+import com.ewide.test.faris_ghilmany.core.domain.repository.IGameRepository
 import com.ewide.test.faris_ghilmany.core.utils.AppExecutors
 import com.ewide.test.faris_ghilmany.core.utils.PreferenceProvider
 import okhttp3.OkHttpClient
@@ -20,11 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<DisneyDatabase>().disneyDao() }
+    factory { get<GameDatabase>().gameDao() }
     single {
         Room.databaseBuilder(
             androidContext(),
-            DisneyDatabase::class.java, "DATABASE_NAME"
+            GameDatabase::class.java, "DATABASE_NAME"
         ).fallbackToDestructiveMigration().build()
     }
 }
@@ -50,7 +50,7 @@ val networkModule = module {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
-        retrofit.create(DisneyApiService::class.java)
+        retrofit.create(GameApiService::class.java)
     }
 
 }
@@ -59,8 +59,8 @@ val repositoryModule = module {
     single { RemoteDataSource(get()) }
     single { LocalDataSource(get()) }
     factory { AppExecutors() }
-    single<IDisneyRepository> {
-        DisneyRepository(get(), get(), get())
+    single<IGameRepository> {
+        GameRepository(get(), get(), get())
     }
     single { PreferenceProvider(get()) }
 }

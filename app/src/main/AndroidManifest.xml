@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DisneyCharacters"
+        android:theme="@style/Theme.Game"
         tools:targetApi="31"
         android:name=".MyApplication">
         <activity
