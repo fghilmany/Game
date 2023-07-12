@@ -11,6 +11,6 @@ interface GameApiService {
         @Query("pageSize") pageSize : Int,
         @Query("desc") desc : String,
         @Query("title") title : String? = null,
-        @Query("storeId") storeId : String = "!",
+        @Query("storeId") storeId : String = "3",
     ): List<ListGameResponse>
 }

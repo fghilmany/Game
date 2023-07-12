@@ -6,7 +6,7 @@ import com.ewide.test.faris_ghilmany.core.data.source.remote.response.ListGameRe
 object DataMapper {
     fun mappingListGameResponseToGameEntity(list: List<ListGameResponse>?): List<GameEntity>? = list?.map {
         with(it){
-            GameEntity((gameID ?: "0").toInt(), title, normalPrice, thumb, dealRating,)
+            GameEntity(gameID.toString(), title, normalPrice, thumb, dealRating,)
         }
     }
 }

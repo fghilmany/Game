@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class GameEntity(
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo("id_game")
-    var gameId: Int = 0,
+    var gameId: String = "",
 
     @ColumnInfo("title")
     var title: String? = null,

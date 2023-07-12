@@ -21,7 +21,10 @@ class MainActivity : AppCompatActivity() {
         binding.rvGame.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter =
-                this@MainActivity.adapter.withLoadStateFooter(
+                this@MainActivity.adapter.withLoadStateHeaderAndFooter(
+                    header = LoadingStateAdapter{
+                        this@MainActivity.adapter.retry()
+                    },
                     footer = LoadingStateAdapter{
                         this@MainActivity.adapter.retry()
                     }

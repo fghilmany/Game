@@ -1,5 +1,6 @@
 package com.ewide.test.faris_ghilmany.core.data.source.paging
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,6 +11,8 @@ import com.ewide.test.faris_ghilmany.core.data.source.local.entity.RemoteKeys
 import com.ewide.test.faris_ghilmany.core.data.source.local.room.GameDatabase
 import com.ewide.test.faris_ghilmany.core.data.source.remote.network.GameApiService
 import com.ewide.test.faris_ghilmany.core.utils.DataMapper
+import com.google.gson.Gson
+import timber.log.Timber
 
 @OptIn(ExperimentalPagingApi::class)
 class GameRemoteMediator(
@@ -24,6 +27,8 @@ class GameRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, GameEntity>
     ): MediatorResult {
+        Timber.e(Gson().toJson(loadType).toString())
+        Timber.e(Gson().toJson(state).toString())
         val page = when (loadType) {
             LoadType.REFRESH ->{
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
