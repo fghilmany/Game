@@ -9,7 +9,7 @@ interface GameApiService {
     suspend fun getListDeals(
         @Query("pageNumber") pageNumber : Int,
         @Query("pageSize") pageSize : Int,
-        @Query("desc") desc : String,
+        @Query("desc") desc : String? = "0",
         @Query("title") title : String? = null,
         @Query("storeId") storeId : String = "3",
     ): List<ListGameResponse>

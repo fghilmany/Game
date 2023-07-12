@@ -19,9 +19,14 @@ class GameRemoteMediator(
     private val apiServices: GameApiService,
     private val database: GameDatabase
 ): RemoteMediator<Int, GameEntity>() {
-    private var desc: String = "0"
-    fun setSortDesc(desc: String){
+    private var desc: String? = "0"
+    private var searchQuery: String? = null
+    fun setSortDesc(desc: String?){
         this.desc = desc
+    }
+
+    fun setSearchQuery(searchQuery: String?) {
+        this.searchQuery = searchQuery
     }
     override suspend fun load(
         loadType: LoadType,
@@ -49,7 +54,7 @@ class GameRemoteMediator(
         }
 
         try {
-            val responseData = apiServices.getListDeals(page, state.config.pageSize, desc)
+            val responseData = apiServices.getListDeals(page, state.config.pageSize, desc, searchQuery)
 
             val endOfPaginationReached = responseData.isEmpty()
 

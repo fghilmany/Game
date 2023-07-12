@@ -6,5 +6,5 @@ import com.ewide.test.faris_ghilmany.core.domain.model.Game
 import kotlinx.coroutines.flow.Flow
 
 interface IGameRepository {
-    fun getGame(desc: String = "0"): Flow<PagingData<Game>>
+    fun getGame(searchQuery: String? = null, desc: String? = "0"): Flow<PagingData<Game>>
 }

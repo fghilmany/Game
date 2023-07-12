@@ -8,7 +8,7 @@ import com.ewide.test.faris_ghilmany.core.domain.repository.IGameRepository
 import kotlinx.coroutines.flow.Flow
 
 class GameInteractor(private val gameRepository: IGameRepository): GameUseCase {
-    override fun getPagingGame(desc: String): Flow<PagingData<Game>> {
-        return gameRepository.getGame(desc)
+    override fun getPagingGame(searchQuery: String?, desc: String?): Flow<PagingData<Game>> {
+        return gameRepository.getGame(searchQuery, desc)
     }
 }

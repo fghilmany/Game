@@ -18,8 +18,8 @@ class GameRepository(
     private val pagingDataSource: PagingDataSource,
     private val appExecutors: AppExecutors
 ): IGameRepository {
-    override fun getGame(desc: String): Flow<PagingData<Game>> {
-        return pagingDataSource.getStories().map {pagingData ->
+    override fun getGame(searchQuery: String?, desc: String?): Flow<PagingData<Game>> {
+        return pagingDataSource.getStories(searchQuery, desc).map {pagingData ->
             pagingData.map { game ->
                 with(game){
                     Game(gameId, title, normalPrice, thumb, dealRating, favorite)
