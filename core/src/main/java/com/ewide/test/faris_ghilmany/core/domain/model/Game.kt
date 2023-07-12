@@ -1,6 +1,6 @@
 package com.ewide.test.faris_ghilmany.core.domain.model
 
-data class GameEntity(
+data class Game(
     var gameId: Int = 0,
     var title: String? = null,
     var normalPrice: String? = null,

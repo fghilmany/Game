@@ -44,9 +44,9 @@ class GameRemoteMediator(
         }
 
         try {
-            val responseData = apiServices.getListDeals(page, state.config.pageSize, desc.toString()).listDealsResponse
+            val responseData = apiServices.getListDeals(page, state.config.pageSize, desc)
 
-            val endOfPaginationReached = responseData?.isEmpty()?:true
+            val endOfPaginationReached = responseData.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -55,10 +55,10 @@ class GameRemoteMediator(
                 }
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
-                val keys = responseData?.map {
+                val keys = responseData.map {
                     RemoteKeys(id = it.gameID.toString(), prevKey = prevKey, nextKey = nextKey)
                 }
-                keys?.let { database.gameDao().insertAll(keys) }
+                keys.let { database.gameDao().insertAll(keys) }
                 val storyMap = DataMapper.mappingListGameResponseToGameEntity(responseData)
                 database.gameDao().insertGame(storyMap)
             }

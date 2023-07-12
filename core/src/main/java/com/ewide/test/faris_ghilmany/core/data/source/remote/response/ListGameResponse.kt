@@ -1,14 +1,7 @@
 package com.ewide.test.faris_ghilmany.core.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
-
 data class ListGameResponse(
-
-	@field:SerializedName("ListDealsResponse")
-	val listDealsResponse: List<ListDealsResponseItem>? = null
-)
-
-data class ListDealsResponseItem(
 
 	@field:SerializedName("gameID")
 	val gameID: String? = null,

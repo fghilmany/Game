@@ -4,6 +4,7 @@ import android.app.Application
 import com.ewide.test.faris_ghilmany.core.di.databaseModule
 import com.ewide.test.faris_ghilmany.core.di.networkModule
 import com.ewide.test.faris_ghilmany.core.di.repositoryModule
+import com.ewide.test.faris_ghilmany.di.useCaseModule
 import com.ewide.test.faris_ghilmany.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -24,7 +25,8 @@ class MyApplication: Application() {
                     databaseModule,
                     networkModule,
                     repositoryModule,
-                    viewModelModule
+                    viewModelModule,
+                    useCaseModule
                 )
             )
         }

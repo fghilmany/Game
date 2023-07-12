@@ -12,5 +12,5 @@ interface GameApiService {
         @Query("desc") desc : String,
         @Query("title") title : String? = null,
         @Query("storeId") storeId : String = "!",
-    ): ListGameResponse
+    ): List<ListGameResponse>
 }

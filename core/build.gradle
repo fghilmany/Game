@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-android'
@@ -12,7 +12,6 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ewide.test.faris_ghilmany.core"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -22,6 +21,10 @@ android {
 
         buildConfigField "String", "BASE_URL", "\"https://www.cheapshark.com/api/1.0/\""
 
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -45,6 +48,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.5.2"
     kapt "androidx.room:room-compiler:2.5.2"
     implementation "androidx.room:room-ktx:2.5.2"
+    implementation 'androidx.room:room-paging:2.5.2'
 
     //network (API)
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
