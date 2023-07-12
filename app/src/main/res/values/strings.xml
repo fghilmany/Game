@@ -2,4 +2,8 @@
     <string name="app_name">Game</string>
     <string name="search">Search</string>
     <string name="retry">Retry</string>
+    <string name="retail_price">Retail Price</string>
+    <string name="sales_price">Sales Price</string>
+    <string name="add_to_favorite">Add to Favorite</string>
+    <string name="remove_from_favorite">Remove from favorite</string>
 </resources>
