@@ -1,10 +1,16 @@
 package com.ewide.test.faris_ghilmany.core.domain.repository
 
 import androidx.paging.PagingData
+import com.ewide.test.faris_ghilmany.core.data.Resource
+import com.ewide.test.faris_ghilmany.core.data.source.local.entity.DetailGameEntity
 import com.ewide.test.faris_ghilmany.core.data.source.local.entity.GameEntity
+import com.ewide.test.faris_ghilmany.core.domain.model.DetailGame
 import com.ewide.test.faris_ghilmany.core.domain.model.Game
 import kotlinx.coroutines.flow.Flow
 
 interface IGameRepository {
     fun getGame(searchQuery: String? = null, desc: String? = "0"): Flow<PagingData<Game>>
+    fun getDetailGame(gameId: String): Flow<Resource<DetailGame>>
+    fun getFavoriteGame(): Flow<List<DetailGame>>
+    fun setGameFavorite(game: DetailGame, state: Boolean)
 }
