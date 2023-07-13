@@ -20,8 +20,7 @@ class PagingDataSource(
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
-                pageSize = 10,
-                initialLoadSize = 5
+                pageSize = 5,
             ),
             remoteMediator = gameRemoteMediator
             ,

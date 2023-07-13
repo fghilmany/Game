@@ -25,8 +25,13 @@ class FavoriteActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@FavoriteActivity)
             adapter = this@FavoriteActivity.adapter
         }
-        viewModel.getFavoriteGame().observe(this){
+        viewModel.getFavoriteGame.observe(this){
             adapter.setList(it)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavoriteGame()
     }
 }

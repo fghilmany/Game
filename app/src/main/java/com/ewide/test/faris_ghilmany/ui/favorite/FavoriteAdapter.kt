@@ -15,6 +15,7 @@ class FavoriteAdapter: RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private val listGame = arrayListOf<DetailGame>()
     fun setList(list: List<DetailGame>){
+        notifyItemRangeRemoved(0, listGame.size)
         listGame.clear()
         listGame.addAll(list)
         notifyItemRangeInserted(0, listGame.size)

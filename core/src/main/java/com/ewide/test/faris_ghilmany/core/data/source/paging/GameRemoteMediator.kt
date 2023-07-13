@@ -32,6 +32,7 @@ class GameRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, GameEntity>
     ): MediatorResult {
+        Timber.tag("Paging State").d(loadType.toString())
         val page = when (loadType) {
             LoadType.REFRESH ->{
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
@@ -64,7 +65,7 @@ class GameRemoteMediator(
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
                 val keys = responseData.map {
-                    RemoteKeys(id = it.gameID.toString(), prevKey = prevKey, nextKey = nextKey)
+                    RemoteKeys(id = it.dealID.toString(), prevKey = prevKey, nextKey = nextKey)
                 }
                 keys.let { database.gameDao().insertAll(keys) }
                 val storyMap = DataMapper.mappingListGameResponseToGameEntity(responseData)
