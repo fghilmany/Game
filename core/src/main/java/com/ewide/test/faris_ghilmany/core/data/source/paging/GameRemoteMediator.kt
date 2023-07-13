@@ -32,8 +32,6 @@ class GameRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, GameEntity>
     ): MediatorResult {
-        Timber.e(Gson().toJson(loadType).toString())
-        Timber.e(Gson().toJson(state).toString())
         val page = when (loadType) {
             LoadType.REFRESH ->{
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)

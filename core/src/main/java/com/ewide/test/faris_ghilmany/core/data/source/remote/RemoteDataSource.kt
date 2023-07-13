@@ -11,7 +11,6 @@ import timber.log.Timber
 
 class RemoteDataSource(private val gameApiService: GameApiService?) {
     suspend fun getDetailGame(id: String): Flow<ApiResponse<DetailGameResponse>> {
-        Timber.e(id)
         return flow {
             try {
                 val response = gameApiService?.getDetailDeals(id)

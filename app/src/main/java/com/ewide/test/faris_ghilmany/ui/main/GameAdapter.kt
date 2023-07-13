@@ -27,7 +27,6 @@ class GameAdapter: PagingDataAdapter<Game, GameAdapter.ViewHolder>(DIFF_CALLBACK
     class ViewHolder(private val binding : ItemGameBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(result: Game?) {
             with(binding) {
-                Timber.e(result?.dealsId.toString())
                 result?.apply {
                     tvTitle.text = title
                     tvPrice.text = normalPrice

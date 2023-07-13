@@ -20,7 +20,6 @@ interface GameApiService {
     suspend fun getDetailDeals(
         @Query("id", encoded = true) id: String
     ): DetailGameResponse{
-        Timber.e(id)
         return DetailGameResponse()
     }
 

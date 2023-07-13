@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.ewide.test.faris_ghilmany.R
 import com.ewide.test.faris_ghilmany.core.data.Resource
 import com.ewide.test.faris_ghilmany.core.domain.model.DetailGame
 import com.ewide.test.faris_ghilmany.databinding.ActivityDetailGameBinding
@@ -16,12 +17,13 @@ class DetailGameActivity : AppCompatActivity() {
     private val binding by lazy { ActivityDetailGameBinding.inflate(layoutInflater) }
     private val viewModel: DetailGameViewModel by viewModel()
 
+    private var detailGame: DetailGame? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         val dealsId = intent.getStringExtra(DEALS_ID_EXTRA)
-        Timber.e(dealsId.toString())
         viewModel.setGameId(dealsId)
         viewModel.getDetailGame().observe(this){
             when(it){
@@ -31,14 +33,20 @@ class DetailGameActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     binding.pbLoading.visibility = View.GONE
                     val data = it.data
-                    viewModel.setDetailGame(data)
-                    setLayout(data)
+                    detailGame = data
+                    viewModel.setDetailGame(detailGame)
+                    setLayout(detailGame)
                 }
                 is Resource.Error -> {
                     binding.pbLoading.visibility = View.GONE
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+        binding.btFavorite.setOnClickListener {
+            val state = detailGame?.favorite != true
+            viewModel.setFavoriteGame(state)
+            viewModel.setFavoriteMovie()
         }
     }
 
@@ -55,6 +63,12 @@ class DetailGameActivity : AppCompatActivity() {
                 tvRatingCount.text = steamRatingCount
                 tvRatingText.text = steamRatingText
             }
+
+            if (data?.favorite == true)
+                btFavorite.text = resources.getString(R.string.remove_from_favorite)
+            else
+                btFavorite.text = resources.getString(R.string.add_to_favorite)
+
         }
     }
 

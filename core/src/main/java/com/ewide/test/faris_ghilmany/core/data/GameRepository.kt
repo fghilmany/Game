@@ -34,7 +34,6 @@ class GameRepository(
             }
 
             override suspend fun createCall(): Flow<ApiResponse<DetailGameResponse>> {
-                Timber.e(gameId)
                 return remoteDataSource.getDetailGame(gameId)
             }
 
