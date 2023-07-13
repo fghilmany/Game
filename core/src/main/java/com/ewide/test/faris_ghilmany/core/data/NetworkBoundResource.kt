@@ -1,5 +1,6 @@
 package com.ewide.test.faris_ghilmany.core.data
 
+import com.ewide.test.faris_ghilmany.core.data.Resource
 import com.ewide.test.faris_ghilmany.core.data.source.remote.network.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import timber.log.Timber
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
-    private var result: Flow<Resource<ResultType>> = flow {
+    private var result: Flow<Resource<ResultType?>> = flow {
         emit(Resource.Loading())
         val dbSource = loadFromDB().first()
         if (shouldFetch(dbSource)) {
@@ -46,7 +47,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected open fun onFetchFailed() {}
 
-    protected abstract fun loadFromDB(): Flow<ResultType>
+    protected abstract fun loadFromDB(): Flow<ResultType?>
 
     protected abstract fun shouldFetch(data: ResultType?): Boolean
 
@@ -54,5 +55,5 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected abstract suspend fun saveCallResult(data: RequestType)
 
-    fun asFlow(): Flow<Resource<ResultType>> = result
+    fun asFlow(): Flow<Resource<ResultType?>> = result
 }

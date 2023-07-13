@@ -6,5 +6,6 @@ data class Game(
     var normalPrice: String? = null,
     var thumb: String? = null,
     var dealRating: String? = null,
+    var dealsId: String? = null,
     var favorite: Boolean? = false,
 )

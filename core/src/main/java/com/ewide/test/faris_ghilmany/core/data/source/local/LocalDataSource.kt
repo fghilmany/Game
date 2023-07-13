@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class LocalDataSource(private val gameDao: GameDao) {
 
     fun getDetailGame(gameId: String): Flow<DetailGameEntity> = gameDao.getDetailGame(gameId)
-    suspend fun insertDetailGame(game: DetailGameEntity) = gameDao.insertDetailGame(game)
+    suspend fun insertDetailGame(game: DetailGameEntity?) = gameDao.insertDetailGame(game)
 
     fun getFavoriteDetailGame(): Flow<List<DetailGameEntity>> = gameDao.getFavoriteGame()
     fun setGameFavorite(game: DetailGameEntity, newState: Boolean) {

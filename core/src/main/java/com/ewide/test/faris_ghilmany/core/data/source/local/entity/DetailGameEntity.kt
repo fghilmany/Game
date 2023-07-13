@@ -9,49 +9,49 @@ data class DetailGameEntity(
 
     @PrimaryKey
     @ColumnInfo("gameID")
-    val gameID: String = "",
+    val gameID: String,
 
     @ColumnInfo("metacriticScore")
-    val metacriticScore: String? = null,
+    val metacriticScore: String,
 
     @ColumnInfo("salePrice")
-    val salePrice: String? = null,
+    val salePrice: String,
 
     @ColumnInfo("releaseDate")
-    val releaseDate: Int? = null,
+    val releaseDate: Int,
 
     @ColumnInfo("thumb")
-    val thumb: String? = null,
+    val thumb: String,
 
     @ColumnInfo("steamRatingCount")
-    val steamRatingCount: String? = null,
+    val steamRatingCount: String,
 
     @ColumnInfo("steamworks")
-    val steamworks: String? = null,
+    val steamworks: String,
 
     @ColumnInfo("metacriticLink")
-    val metacriticLink: String? = null,
+    val metacriticLink: String,
 
     @ColumnInfo("storeID")
-    val storeID: String? = null,
+    val storeID: String,
 
     @ColumnInfo("steamAppID")
-    val steamAppID: String? = null,
+    val steamAppID: String,
 
     @ColumnInfo("steamRatingPercent")
-    val steamRatingPercent: String? = null,
+    val steamRatingPercent: String,
 
     @ColumnInfo("name")
-    val name: String? = null,
+    val name: String,
 
     @ColumnInfo("publisher")
-    val publisher: String? = null,
+    val publisher: String,
 
     @ColumnInfo("retailPrice")
-    val retailPrice: String? = null,
+    val retailPrice: String,
 
     @ColumnInfo("steamRatingText")
-    val steamRatingText: String? = null,
+    val steamRatingText: String,
 
     @ColumnInfo("favorite")
     var favorite: Boolean = false

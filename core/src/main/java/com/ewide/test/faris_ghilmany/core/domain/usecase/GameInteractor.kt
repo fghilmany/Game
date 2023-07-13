@@ -11,7 +11,7 @@ class GameInteractor(private val gameRepository: IGameRepository): GameUseCase {
     override fun getPagingGame(searchQuery: String?, desc: String?): Flow<PagingData<Game>> {
         return gameRepository.getGame(searchQuery, desc)
     }
-    override fun getDetailGame(gameId: String): Flow<Resource<DetailGame>> {
+    override fun getDetailGame(gameId: String): Flow<Resource<DetailGame?>> {
         return gameRepository.getDetailGame(gameId)
     }
     override fun getFavoriteGame(): Flow<List<DetailGame>> {

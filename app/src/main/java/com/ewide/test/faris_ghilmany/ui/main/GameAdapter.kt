@@ -1,5 +1,6 @@
 package com.ewide.test.faris_ghilmany.ui.main
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ewide.test.faris_ghilmany.core.domain.model.Game
 import com.ewide.test.faris_ghilmany.databinding.ItemGameBinding
+import com.ewide.test.faris_ghilmany.ui.detail.DetailGameActivity
+import timber.log.Timber
 
 class GameAdapter: PagingDataAdapter<Game, GameAdapter.ViewHolder>(DIFF_CALLBACK) {
 
@@ -24,6 +27,7 @@ class GameAdapter: PagingDataAdapter<Game, GameAdapter.ViewHolder>(DIFF_CALLBACK
     class ViewHolder(private val binding : ItemGameBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(result: Game?) {
             with(binding) {
+                Timber.e(result?.dealsId.toString())
                 result?.apply {
                     tvTitle.text = title
                     tvPrice.text = normalPrice
@@ -33,7 +37,9 @@ class GameAdapter: PagingDataAdapter<Game, GameAdapter.ViewHolder>(DIFF_CALLBACK
                         .into(ivThumb)
 
                     itemView.setOnClickListener {
-
+                        val intent = Intent(itemView.context, DetailGameActivity::class.java)
+                        intent.putExtra(DetailGameActivity.DEALS_ID_EXTRA, dealsId)
+                        itemView.context.startActivity(intent)
                     }
                 }
             }

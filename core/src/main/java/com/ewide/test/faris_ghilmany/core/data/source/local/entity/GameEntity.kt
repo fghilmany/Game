@@ -3,6 +3,7 @@ package com.ewide.test.faris_ghilmany.core.data.source.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "game")
 data class GameEntity(
@@ -21,6 +22,9 @@ data class GameEntity(
 
     @ColumnInfo("deal_rating")
     var dealRating: String? = null,
+
+    @field:SerializedName("deal_iD")
+    val dealID: String? = null,
 
     @ColumnInfo("favorite")
     var favorite: Boolean? = false,

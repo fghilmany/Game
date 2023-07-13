@@ -4,6 +4,7 @@ import com.ewide.test.faris_ghilmany.core.data.source.remote.response.DetailGame
 import com.ewide.test.faris_ghilmany.core.data.source.remote.response.ListGameResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
+import timber.log.Timber
 
 interface GameApiService {
     @GET("deals")
@@ -12,12 +13,15 @@ interface GameApiService {
         @Query("pageSize") pageSize : Int,
         @Query("desc") desc : String? = "0",
         @Query("title") title : String? = null,
-        @Query("storeId") storeId : String = "3",
+        @Query("storeId") storeId : String = "1",
     ): List<ListGameResponse>
 
     @GET("deals")
     suspend fun getDetailDeals(
-        @Query("id") id: String
-    ): DetailGameResponse
+        @Query("id", encoded = true) id: String
+    ): DetailGameResponse{
+        Timber.e(id)
+        return DetailGameResponse()
+    }
 
 }

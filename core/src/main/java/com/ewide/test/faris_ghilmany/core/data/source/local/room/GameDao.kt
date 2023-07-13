@@ -30,7 +30,7 @@ interface GameDao{
     @Query("SELECT * FROM detail_game where favorite = 1")
     fun getFavoriteGame(): Flow<List<DetailGameEntity>>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDetailGame(movie: DetailGameEntity)
+    suspend fun insertDetailGame(movie: DetailGameEntity?)
     @Update
     fun updateFavoriteGame(game: DetailGameEntity)
 }
